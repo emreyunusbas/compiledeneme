@@ -1,0 +1,72 @@
+{
+  "expo": {
+    "name": "Pilates Studio Management",
+    "slug": "pilates-studio-management",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1A1D23"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pilates.studio",
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses camera to take photos for member profiles and reports.",
+        "NSPhotoLibraryUsageDescription": "This app needs access to your photo library to select images for profiles and reports.",
+        "NSLocationWhenInUseUsageDescription": "This app uses location to provide nearby studio recommendations."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#1A1D23"
+      },
+      "package": "com.pilates.studio",
+      "versionCode": 1,
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "ACCESS_FINE_LOCATION"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png",
+      "bundler": "metro",
+      "output": "single"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-image-picker",
+      "expo-location",
+      "expo-notifications",
+      "expo-haptics",
+      "expo-linear-gradient",
+      "expo-image"
+    ],
+    "scheme": "pilates-studio",
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "apiUrl": "http://localhost:3000",
+      "enableMockData": true,
+      "enableDebugMode": true
+    },
+    "updates": {
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
+    },
+    "runtimeVersion": "1.0.0",
+    "owner": "your-username"
+  }
+}
