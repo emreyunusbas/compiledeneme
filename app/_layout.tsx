@@ -493,17 +493,31 @@ function RootLayoutNav() {
   );
 }
 
+function TRPCProvider({ children }: { children: React.ReactNode }) {
+  const [trpcClient] = React.useState(() => getApiClient());
+
+  return (
+    <trpcClient.Provider client={trpcClient}>
+      {children}
+    </trpcClient.Provider>
+  );
+}
+
 export default function RootLayout() {
   return (
     <SafeAreaProvider>
-      <AppProvider>
-        <ClassProvider>
-          <BookingProvider>
-            <RootLayoutNav />
-            <StatusBar style="light" backgroundColor={Colors.background} />
-          </BookingProvider>
-        </ClassProvider>
-      </AppProvider>
+      <QueryClientProvider client={queryClient}>
+        <TRPCProvider>
+          <AppProvider>
+            <ClassProvider>
+              <BookingProvider>
+                <RootLayoutNav />
+                <StatusBar style="light" backgroundColor={Colors.background} />
+              </BookingProvider>
+            </ClassProvider>
+          </AppProvider>
+        </TRPCProvider>
+      </QueryClientProvider>
     </SafeAreaProvider>
   );
 }
