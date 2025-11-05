@@ -1,6 +1,10 @@
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { httpBatchLink } from '@trpc/client';
+import { createTRPCReact } from '@trpc/react-query';
+import superjson from 'superjson';
 import { AppProvider } from '@/contexts/AppContext';
 import { ClassProvider } from '@/contexts/ClassContext';
 import { BookingProvider } from '@/contexts/BookingContext';
@@ -8,6 +12,51 @@ import { Colors } from '@/constants/colors';
 import { useApp } from '@/contexts/AppContext';
 import { useEffect } from 'react';
 import { router } from 'expo-router';
+import type { AppRouter } from '@/backend/trpc/app-router';
+
+// Create tRPC React Query client
+const getApiClient = () => {
+  return createTRPCReact<AppRouter>({
+    links: [
+      httpBatchLink({
+        url: process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3000/api/trpc',
+        transformer: superjson,
+        headers: () => {
+          const headers: Record<string, string> = {
+            'Content-Type': 'application/json',
+          };
+
+          const token = localStorage.getItem('@pilates4us:token');
+          if (token) {
+            headers.authorization = `Bearer ${token}`;
+          }
+
+          return headers;
+        },
+      }),
+    ],
+  });
+};
+
+// Create a query client for React Query
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: (failureCount, error) => {
+        if (error.data?.code === 'UNAUTHORIZED') return false;
+        return failureCount < 3;
+      },
+      retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+      staleTime: 5 * 60 * 1000, // 5 minutes
+    },
+    mutations: {
+      retry: (failureCount, error) => {
+        if (error.data?.code === 'UNAUTHORIZED') return false;
+        return failureCount < 2;
+      }
+    }
+  }
+});
 
 function RootLayoutNav() {
   const { user, isLoading } = useApp();
