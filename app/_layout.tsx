@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { httpBatchLink } from '@trpc/client';
 import { createTRPCReact } from '@trpc/react-query';
 import superjson from 'superjson';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppProvider } from '@/contexts/AppContext';
 import { ClassProvider } from '@/contexts/ClassContext';
 import { BookingProvider } from '@/contexts/BookingContext';
@@ -21,14 +22,18 @@ const getApiClient = () => {
       httpBatchLink({
         url: process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3000/api/trpc',
         transformer: superjson,
-        headers: () => {
+        headers: async () => {
           const headers: Record<string, string> = {
             'Content-Type': 'application/json',
           };
 
-          const token = localStorage.getItem('@pilates4us:token');
-          if (token) {
-            headers.authorization = `Bearer ${token}`;
+          try {
+            const token = await AsyncStorage.getItem('@pilates4us:token');
+            if (token) {
+              headers.authorization = `Bearer ${token}`;
+            }
+          } catch (error) {
+            console.warn('Failed to get auth token from AsyncStorage:', error);
           }
 
           return headers;

@@ -169,7 +169,7 @@ export default function PaymentsScreen() {
                 <CreditCard size={16} color={Colors.text} />
               </View>
               <View style={styles.recentContent}>
-                <Text style={styles.recentTitle}>
+                <Text style={styles.recentItemTitle}>
                   {payment.method === 'CASH' ? 'Nakit' :
                    payment.method === 'CARD' ? 'Kart' :
                    payment.method === 'BANK_TRANSFER' ? 'Havale' : 'Diğer'} Ödeme
@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
   recentContent: {
     flex: 1,
   },
-  recentTitle: {
+  recentItemTitle: {
     fontSize: 14,
     fontWeight: '500',
     color: Colors.text,

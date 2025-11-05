@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
   highlightedItem: {
     borderWidth: 2,
     borderColor: Colors.primary,
-    backgroundColor: Colors.primaryTransparent,
+    backgroundColor: Colors.primaryAlpha10,
   },
   iconContainer: {
     width: 40,
@@ -319,7 +319,7 @@ const styles = StyleSheet.create({
   logoutButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.errorTransparent,
+    backgroundColor: 'rgba(255, 77, 77, 0.1)',
     borderRadius: 16,
     padding: 16,
     marginTop: 8,
