@@ -1,0 +1,47 @@
+{
+  "name": "pilates-studio-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Pilates Studio Management",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "docker:build": "docker build -t pilates-studio-backend .",
+    "docker:run": "docker run -p 3000:3000 pilates-studio-backend",
+    "docker:dev": "docker-compose up --build",
+    "test": "jest",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hono/trpc-server": "^0.3.0",
+    "@trpc/server": "^10.45.0",
+    "hono": "^4.10.1",
+    "zod": "^3.22.4",
+    "superjson": "^2.2.1",
+    "hono/cors": "^4.10.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "tsx": "^4.6.0",
+    "typescript": "^5.3.0",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.8",
+    "ts-jest": "^29.1.1",
+    "eslint": "^8.54.0",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0"
+  },
+  "keywords": [
+    "pilates",
+    "studio",
+    "management",
+    "api",
+    "trpc",
+    "hono"
+  ],
+  "author": "Pilates Studio Management Team",
+  "license": "MIT"
+}
