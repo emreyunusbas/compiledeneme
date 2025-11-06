@@ -5,6 +5,9 @@
   "scripts": {
     "start": "expo start",
     "start:go": "EXPO_GO_DEBUG=true expo start --dev-client",
+    "start:lan": "expo start --lan",
+    "start:tunnel": "expo start --tunnel",
+    "start:mobile": "expo start --lan --clear",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",

@@ -59,7 +59,13 @@
     "extra": {
       "apiUrl": "http://localhost:3000",
       "enableMockData": true,
-      "enableDebugMode": true
+      "enableDebugMode": true,
+      "eas": {
+        "projectId": "pilates-studio-management"
+      }
+    },
+    "packagerOpts": {
+      "port": 8081
     },
     "updates": {
       "enabled": true,
@@ -67,6 +73,14 @@
       "fallbackToCacheTimeout": 0
     },
     "runtimeVersion": "1.0.0",
-    "owner": "your-username"
+    "owner": "your-username",
+    "developmentClient": {
+      "silentLaunch": false
+    },
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0F0F0F"
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { createTRPCReact } from '@trpc/react-query';
 import { httpBatchLink } from '@trpc/client';
 import superjson from 'superjson';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { AppRouter } from '@/backend/trpc/app-router';
 
 // Create tRPC React client
@@ -117,7 +118,7 @@ const createRetryLinks = () => {
           throw error;
         }
       },
-      headers: () => {
+      headers: async () => {
         // Add authentication headers if needed
         const headers: Record<string, string> = {
           'Content-Type': 'application/json',
@@ -125,9 +126,13 @@ const createRetryLinks = () => {
         };
 
         // Add auth token if available
-        const token = localStorage.getItem('@pilates4us:token');
-        if (token) {
-          headers.authorization = `Bearer ${token}`;
+        try {
+          const token = await AsyncStorage.getItem('@pilates4us:token');
+          if (token) {
+            headers.authorization = `Bearer ${token}`;
+          }
+        } catch (error) {
+          console.warn('Failed to get auth token from AsyncStorage:', error);
         }
 
         return headers;
