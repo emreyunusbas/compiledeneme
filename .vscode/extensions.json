@@ -1,0 +1,53 @@
+{
+  "recommendations": [
+    // Essential
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-typescript-next",
+
+    // React Native / Expo
+    "msjsdiag.vscode-react-native",
+    "dsznajder.es7-react-js-snippets",
+    "expo.vscode-expo-tools",
+
+    // Git
+    "eamodio.gitlens",
+    "github.vscode-pull-request-github",
+
+    // Utility
+    "christian-kohler.path-intellisense",
+    "aaron-bond.better-comments",
+    "wayou.vscode-todo-highlight",
+    "gruntfuggly.todo-tree",
+
+    // Docker
+    "ms-azuretools.vscode-docker",
+
+    // Database
+    "mtxr.sqltools",
+    "mtxr.sqltools-driver-pg",
+
+    // Markdown
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+
+    // Themes (optional)
+    "github.github-vscode-theme",
+    "pkief.material-icon-theme",
+
+    // Productivity
+    "usernamehw.errorlens",
+    "streetsidesoftware.code-spell-checker",
+    "wix.vscode-import-cost",
+
+    // ENV files
+    "mikestead.dotenv",
+
+    // JSON
+    "zainchen.json",
+
+    // REST API
+    "humao.rest-client"
+  ],
+  "unwantedRecommendations": []
+}
