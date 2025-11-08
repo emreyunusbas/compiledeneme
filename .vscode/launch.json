@@ -1,0 +1,70 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Expo: Debug in Expo Go",
+      "type": "reactnative",
+      "request": "launch",
+      "platform": "exponent",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Expo: Debug Android",
+      "type": "reactnative",
+      "request": "launch",
+      "platform": "android",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Expo: Debug iOS",
+      "type": "reactnative",
+      "request": "launch",
+      "platform": "ios",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Backend: Debug",
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Backend",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/backend/src/index.ts",
+      "preLaunchTask": "npm: start:backend",
+      "outFiles": ["${workspaceFolder}/backend/dist/**/*.js"],
+      "cwd": "${workspaceFolder}/backend",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "runtimeExecutable": "tsx",
+      "runtimeArgs": ["--inspect", "src/index.ts"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Backend: Attach",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "restart": true,
+      "skipFiles": ["<node_internals>/**"],
+      "cwd": "${workspaceFolder}/backend"
+    },
+    {
+      "name": "TypeScript: Check",
+      "type": "node",
+      "request": "launch",
+      "name": "TypeScript Check",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "typecheck"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Full Stack: Debug",
+      "configurations": ["Expo: Debug in Expo Go", "Backend: Debug"],
+      "stopAll": true
+    }
+  ]
+}
